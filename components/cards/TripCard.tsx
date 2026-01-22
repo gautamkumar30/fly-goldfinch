@@ -6,6 +6,7 @@ import { Clock, MapPin, Check, ArrowRight, Map as MapIcon } from 'lucide-react';
 import { Itinerary } from '@/lib/data/itineraries';
 import { formatPrice } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
+import { trackEvent } from '@/app/actions/analytics';
 
 interface TripCardProps {
   itinerary: Itinerary;
@@ -14,7 +15,19 @@ interface TripCardProps {
 }
 
 export function TripCard({ itinerary, index = 0, variant = 'default' }: TripCardProps) {
-  const { title, destination, duration, price, image, highlights, cities } = itinerary;
+  const { title, destination, duration, price, image, highlights, cities, slug } = itinerary;
+
+  const handleClick = async () => {
+    const sessionId = localStorage.getItem('fly_goldfinch_session_id');
+    if (sessionId) {
+      await trackEvent({
+        sessionId,
+        eventType: 'itinerary_click',
+        eventData: { title, slug },
+        url: window.location.href,
+      });
+    }
+  };
 
   if (variant === 'horizontal') {
     return (
@@ -23,6 +36,7 @@ export function TripCard({ itinerary, index = 0, variant = 'default' }: TripCard
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
+        onClick={handleClick}
         className="group flex flex-col md:flex-row bg-white rounded-[24px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
       >
         {/* Image */}
@@ -84,6 +98,7 @@ export function TripCard({ itinerary, index = 0, variant = 'default' }: TripCard
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
+      onClick={handleClick}
       className="group bg-white rounded-[24px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
     >
       {/* Image Container */}

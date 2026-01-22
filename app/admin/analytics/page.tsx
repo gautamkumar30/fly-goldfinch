@@ -69,6 +69,7 @@ export default async function AdminAnalyticsPage() {
           dailyTraffic={data.dailyTraffic}
           scrollDistribution={data.scrollDistribution}
           topClicks={data.topClicks}
+          itineraryClicks={data.itineraryClicks}
         />
 
         {/* Footer Info */}

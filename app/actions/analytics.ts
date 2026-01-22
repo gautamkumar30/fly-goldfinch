@@ -98,13 +98,24 @@ export async function getAnalyticsSummary() {
       .sort((a, b) => b.count - a.count)
       .slice(0, 10);
 
+    // Itinerary Clicks
+    const itineraryClickMap = new Map<string, number>();
+    events.filter(e => e.eventType === 'itinerary_click').forEach(e => {
+      const title = (e.eventData as any).title || 'Unknown';
+      itineraryClickMap.set(title, (itineraryClickMap.get(title) || 0) + 1);
+    });
+    const itineraryClicks = Array.from(itineraryClickMap.entries())
+      .map(([title, count]) => ({ title, count }))
+      .sort((a, b) => b.count - a.count);
+
     return {
       totalPageViews,
       uniqueSessions,
       avgTimeSpent,
       dailyTraffic,
       scrollDistribution,
-      topClicks
+      topClicks,
+      itineraryClicks
     };
   } catch (error) {
     console.error('Error fetching analytics summary:', error);

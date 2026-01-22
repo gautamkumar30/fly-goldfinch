@@ -23,7 +23,7 @@ export function TripCard({ itinerary, index = 0, variant = 'default' }: TripCard
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="group flex flex-col md:flex-row bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+        className="group flex flex-col md:flex-row bg-white rounded-[24px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
       >
         {/* Image */}
         <div className="relative w-full md:w-80 aspect-[16/10] md:aspect-auto overflow-hidden">
@@ -38,37 +38,38 @@ export function TripCard({ itinerary, index = 0, variant = 'default' }: TripCard
         </div>
 
         {/* Content */}
-        <div className="flex-1 p-6">
-          <div className="flex items-center gap-2 text-gold mb-2">
+        <div className="flex-1 p-8">
+          <div className="flex items-center gap-2 text-coral mb-3">
             <MapPin className="w-4 h-4" />
-            <span className="text-sm font-medium">{destination}</span>
+            <span className="text-sm font-medium uppercase tracking-wider">{destination}</span>
           </div>
-          <h3 className="text-xl font-heading font-semibold text-charcoal mb-3">
+          <h3 className="text-2xl font-heading font-bold text-navy mb-4">
             {title}
           </h3>
-          <div className="flex items-center gap-4 text-slate text-sm mb-4">
-            <span className="flex items-center gap-1">
-              <Clock className="w-4 h-4" />
+          <div className="flex items-center gap-4 text-slate text-sm mb-6">
+            <span className="flex items-center gap-2 px-3 py-1 bg-off-white rounded-full">
+              <Clock className="w-4 h-4 text-navy" />
               {duration.nights}N/{duration.days}D
             </span>
-            <span>{cities.slice(0, 3).join(' • ')}</span>
           </div>
-          <ul className="space-y-1 mb-4">
+          <ul className="space-y-2 mb-8">
             {highlights.slice(0, 3).map((highlight, idx) => (
-              <li key={idx} className="flex items-center gap-2 text-sm text-slate-dark">
-                <Check className="w-4 h-4 text-gold flex-shrink-0" />
+              <li key={idx} className="flex items-center gap-3 text-sm text-slate-dark">
+                <div className="w-5 h-5 rounded-full bg-navy/5 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-3 h-3 text-navy" />
+                </div>
                 {highlight}
               </li>
             ))}
           </ul>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between pt-6 border-t border-off-white">
             <div>
-              <p className="text-sm text-slate">Starting from</p>
-              <p className="text-2xl font-heading font-semibold text-gold">
+              <p className="text-xs text-slate uppercase tracking-wider mb-1">Starting from</p>
+              <p className="text-2xl font-heading font-bold text-navy">
                 {formatPrice(price)}
               </p>
             </div>
-            <Button variant="primary" size="sm" rightIcon={<ArrowRight className="w-4 h-4" />}>
+            <Button variant="primary" size="md" rightIcon={<ArrowRight className="w-4 h-4" />}>
               Explore
             </Button>
           </div>
@@ -79,11 +80,11 @@ export function TripCard({ itinerary, index = 0, variant = 'default' }: TripCard
 
   return (
     <motion.article
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="group bg-white rounded-[24px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
     >
       {/* Image Container */}
       <div className="relative aspect-[4/3] overflow-hidden">
@@ -91,62 +92,55 @@ export function TripCard({ itinerary, index = 0, variant = 'default' }: TripCard
           src={image}
           alt={title}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
         
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-card" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
         {/* Duration Badge */}
-        <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm text-navy text-sm font-semibold">
-          <Clock className="w-4 h-4" />
+        <div className="absolute top-4 left-4 flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/90 backdrop-blur-md text-navy text-xs font-bold shadow-sm">
+          <Clock className="w-3.5 h-3.5" />
           {duration.nights}N/{duration.days}D
         </div>
 
-        {/* Destination Badge */}
-        <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-gold text-navy text-sm font-semibold">
-          {destination}
+        {/* Trending Badge */}
+        <div className="absolute top-4 right-4 px-4 py-2 rounded-full bg-coral text-white text-xs font-bold shadow-sm">
+          Trending
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-5">
-        <h3 className="text-lg font-heading font-semibold text-charcoal mb-2 line-clamp-2">
+      <div className="p-6">
+        <div className="flex items-center gap-2 text-coral mb-3">
+          <MapPin className="w-3.5 h-3.5" />
+          <span className="text-xs font-bold uppercase tracking-widest">{destination}</span>
+        </div>
+        
+        <h3 className="text-xl font-heading font-bold text-navy mb-4 line-clamp-1 group-hover:text-coral transition-colors">
           {title}
         </h3>
 
         {/* Cities */}
-        <div className="flex items-center gap-2 text-slate text-sm mb-4">
-          <MapPin className="w-4 h-4 text-gold" />
-          <span className="line-clamp-1">{cities.join(' → ')}</span>
+        <div className="flex items-center gap-2 text-slate text-sm mb-6 bg-off-white p-3 rounded-xl">
+          <Map className="w-4 h-4 text-navy shrink-0" />
+          <span className="line-clamp-1 font-medium">{cities.join(' → ')}</span>
         </div>
 
-        {/* Highlights */}
-        <ul className="space-y-1.5 mb-4">
-          {highlights.slice(0, 3).map((highlight, idx) => (
-            <li key={idx} className="flex items-start gap-2 text-sm text-slate-dark">
-              <Check className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
-              <span className="line-clamp-1">{highlight}</span>
-            </li>
-          ))}
-        </ul>
-
         {/* Price and CTA */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+        <div className="flex items-center justify-between pt-4 border-t border-off-white">
           <div>
-            <p className="text-xs text-slate uppercase tracking-wider">Starting from</p>
-            <p className="text-xl font-heading font-semibold text-gold">
+            <p className="text-[10px] text-slate uppercase tracking-widest mb-1">From</p>
+            <p className="text-xl font-heading font-bold text-navy">
               {formatPrice(price)}
             </p>
           </div>
           <motion.button
-            whileHover={{ scale: 1.05, x: 3 }}
-            whileTap={{ scale: 0.98 }}
-            className="flex items-center gap-1 text-navy font-medium hover:text-gold transition-colors"
+            whileHover={{ x: 5 }}
+            className="w-10 h-10 rounded-full bg-navy text-white flex items-center justify-center hover:bg-coral transition-colors shadow-lg shadow-navy/20"
           >
-            Explore
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-5 h-5" />
           </motion.button>
         </div>
       </div>

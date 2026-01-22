@@ -6,7 +6,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { 
   ArrowRight, 
-  ChevronDown, 
+  ChevronDown,
+  ChevronUp,
   Headphones, 
   Award, 
   Sparkles, 
@@ -668,64 +669,115 @@ export default function HomePage() {
         {/* ===== CERTIFICATIONS MARQUEE ===== */}
         <CertificationMarquee />
 
-        {/* ===== TESTIMONIALS ===== */}
-        <section className="section-padding bg-white">
+        {/* ===== TESTIMONIALS SECTION ===== */}
+        <section className="section-padding bg-white overflow-hidden">
           <div className="container-custom">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-gold-100 text-gold-600 text-sm font-medium mb-4">
-                Testimonials
-              </span>
-              <h2 className="text-3xl md:text-4xl font-heading font-semibold text-charcoal mb-4">
-                What Our <span className="text-gradient-gold">Travelers</span> Say
-              </h2>
-              <p className="text-slate max-w-2xl mx-auto">
-                Real stories from our happy adventurers around the world.
-              </p>
-            </motion.div>
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              
+              {/* Left Content */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              >
+                <span className="inline-block text-slate font-medium text-sm uppercase tracking-wider mb-4">
+                  Testimonials
+                </span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-navy mb-12 max-w-md">
+                  What People Say About Us.
+                </h2>
 
-            {/* Testimonial Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {testimonials.slice(0, 3).map((testimonial, index) => (
-                <TestimonialCard
-                  key={testimonial.id}
-                  testimonial={testimonial}
-                  index={index}
-                />
+                {/* Pagination Dots */}
+                <div className="flex gap-4">
+                  <div className="w-3 h-3 rounded-full bg-navy" />
+                  <div className="w-3 h-3 rounded-full bg-off-white border border-slate-light" />
+                  <div className="w-3 h-3 rounded-full bg-off-white border border-slate-light" />
+                </div>
+              </motion.div>
+
+              {/* Right Content - Stacked Cards */}
+              <div className="relative flex items-center gap-8">
+                <div className="relative flex-1">
+                  {/* Top Card */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="bg-white rounded-[24px] p-8 shadow-2xl relative z-20 max-w-[500px]"
+                  >
+                    {/* Avatar */}
+                    <div className="absolute -top-8 -left-8 w-16 h-16 rounded-full border-4 border-white shadow-lg overflow-hidden">
+                      <Image
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80"
+                        alt="Mike Taylor"
+                        width={64}
+                        height={64}
+                        className="object-cover"
+                      />
+                    </div>
+                    
+                    <p className="text-slate text-sm leading-relaxed mb-8">
+                      "On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no."
+                    </p>
+                    
+                    <div>
+                      <h4 className="text-lg font-bold text-charcoal">Mike taylor</h4>
+                      <p className="text-xs text-slate">Lahore, Pakistan</p>
+                    </div>
+                  </motion.div>
+
+                  {/* Bottom Card (Visual Only) */}
+                  <div className="absolute top-12 left-12 right-[-48px] bottom-[-48px] bg-white rounded-[24px] p-8 border border-off-white shadow-sm -z-10 flex flex-col justify-end opacity-40">
+                    <div>
+                      <h4 className="text-lg font-bold text-charcoal">Chris Thomas</h4>
+                      <p className="text-xs text-slate">CEO of Red Button</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Navigation Arrows */}
+                <div className="flex flex-col gap-8">
+                  <button className="text-slate hover:text-navy transition-colors">
+                    <ChevronUp size={24} />
+                  </button>
+                  <button className="text-slate hover:text-navy transition-colors">
+                    <ChevronDown size={24} />
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* ===== PARTNER LOGOS SECTION ===== */}
+        <section className="py-12 bg-white">
+          <div className="container-custom">
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 lg:gap-24">
+              {[
+                { name: 'Axon Airlines', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Axon_Airlines_logo.svg/2560px-Axon_Airlines_logo.svg.png' },
+                { name: 'Jetstar', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Jetstar_logo.svg/2560px-Jetstar_logo.svg.png' },
+                { name: 'Expedia', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Expedia_Logo_2023.svg/2560px-Expedia_Logo_2023.svg.png', active: true },
+                { name: 'Qantas', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Qantas_logo_2016.svg/2560px-Qantas_logo_2016.svg.png' },
+                { name: 'Alitalia', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Alitalia_logo.svg/2560px-Alitalia_logo.svg.png' }
+              ].map((partner, index) => (
+                <motion.div
+                  key={partner.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className={`flex items-center justify-center ${partner.active ? 'bg-white p-6 rounded-2xl shadow-xl' : 'grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-300'}`}
+                >
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="h-8 md:h-10 w-auto object-contain"
+                  />
+                </motion.div>
               ))}
             </div>
-
-            {/* Google Reviews Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mt-12 text-center"
-            >
-              <div className="inline-flex items-center gap-4 px-6 py-4 rounded-full bg-off-white">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className="w-6 h-6 text-gold fill-current"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                  ))}
-                </div>
-                <span className="font-heading text-xl font-semibold text-charcoal">
-                  5.0
-                </span>
-                <span className="text-slate">
-                  Based on 376 Google Reviews
-                </span>
-              </div>
-            </motion.div>
           </div>
         </section>
 

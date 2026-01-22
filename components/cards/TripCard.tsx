@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Clock, MapPin, Check, ArrowRight } from 'lucide-react';
+import { Clock, MapPin, Check, ArrowRight, Map as MapIcon } from 'lucide-react';
 import { Itinerary } from '@/lib/data/itineraries';
 import { formatPrice } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
@@ -26,7 +26,7 @@ export function TripCard({ itinerary, index = 0, variant = 'default' }: TripCard
         className="group flex flex-col md:flex-row bg-white rounded-[24px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
       >
         {/* Image */}
-        <div className="relative w-full md:w-80 aspect-[16/10] md:aspect-auto overflow-hidden">
+        <div className="relative w-full md:w-80 aspect-16/10 md:aspect-auto overflow-hidden">
           <Image
             src={image}
             alt={title}
@@ -34,7 +34,7 @@ export function TripCard({ itinerary, index = 0, variant = 'default' }: TripCard
             className="object-cover transition-transform duration-500 group-hover:scale-110"
             sizes="(max-width: 768px) 100vw, 320px"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20" />
+          <div className="absolute inset-0 bg-linear-to-r from-transparent to-black/20" />
         </div>
 
         {/* Content */}
@@ -55,7 +55,7 @@ export function TripCard({ itinerary, index = 0, variant = 'default' }: TripCard
           <ul className="space-y-2 mb-8">
             {highlights.slice(0, 3).map((highlight, idx) => (
               <li key={idx} className="flex items-center gap-3 text-sm text-slate-dark">
-                <div className="w-5 h-5 rounded-full bg-navy/5 flex items-center justify-center flex-shrink-0">
+                <div className="w-5 h-5 rounded-full bg-navy/5 flex items-center justify-center shrink-0">
                   <Check className="w-3 h-3 text-navy" />
                 </div>
                 {highlight}
@@ -87,7 +87,7 @@ export function TripCard({ itinerary, index = 0, variant = 'default' }: TripCard
       className="group bg-white rounded-[24px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
     >
       {/* Image Container */}
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative aspect-4/3 overflow-hidden">
         <Image
           src={image}
           alt={title}
@@ -97,7 +97,7 @@ export function TripCard({ itinerary, index = 0, variant = 'default' }: TripCard
         />
         
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
         {/* Duration Badge */}
         <div className="absolute top-4 left-4 flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/90 backdrop-blur-md text-navy text-xs font-bold shadow-sm">
@@ -122,9 +122,8 @@ export function TripCard({ itinerary, index = 0, variant = 'default' }: TripCard
           {title}
         </h3>
 
-        {/* Cities */}
         <div className="flex items-center gap-2 text-slate text-sm mb-6 bg-off-white p-3 rounded-xl">
-          <Map className="w-4 h-4 text-navy shrink-0" />
+          <MapIcon className="w-4 h-4 text-navy shrink-0" />
           <span className="line-clamp-1 font-medium">{cities.join(' → ')}</span>
         </div>
 

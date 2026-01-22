@@ -38,30 +38,35 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-navy text-white">
-      {/* Main Footer */}
-      <div className="container-custom py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="bg-navy text-white pt-24 pb-12 overflow-hidden relative">
+      {/* Decorative Background Element */}
+      <div className="absolute top-0 right-0 p-24 opacity-5 pointer-events-none">
+        <Plane size={300} className="rotate-12" />
+      </div>
+
+      <div className="container-custom relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           {/* Brand Column */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-6">
-              <Plane className="w-8 h-8 text-gold" />
-              <span className="text-2xl font-heading font-semibold">
-                Fly <span className="text-gold">Goldfinch</span>
+          <div className="space-y-8">
+            <Link href="/" className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl bg-coral flex items-center justify-center shadow-lg shadow-coral/20">
+                <Plane className="w-7 h-7 text-white" />
+              </div>
+              <span className="text-2xl font-heading font-bold tracking-tight">
+                Goldfinch
               </span>
             </Link>
-            <p className="text-slate-light mb-6 leading-relaxed">
-              Your gateway to exclusive global adventures. We craft unforgettable 
-              journeys to 25+ destinations across 5 continents.
+            <p className="text-slate-light leading-relaxed max-w-xs">
+              Book your next trip in 3 easy steps with our premium travel services. 
+              We craft unforgettable journeys across 5 continents.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold transition-colors"
+                  whileHover={{ y: -5, color: '#FF7D6B' }}
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center transition-all duration-300 border border-white/10"
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5" />
@@ -70,136 +75,72 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Company Links */}
           <div>
-            <h4 className="text-lg font-heading font-semibold mb-6 text-gold">
-              Quick Links
-            </h4>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-slate-light hover:text-gold transition-colors inline-flex items-center gap-2"
-                  >
-                    <span className="w-1 h-1 rounded-full bg-gold" />
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Popular Destinations */}
-          <div>
-            <h4 className="text-lg font-heading font-semibold mb-6 text-gold">
-              Popular Destinations
-            </h4>
-            <ul className="space-y-3">
-              {destinations.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-slate-light hover:text-gold transition-colors inline-flex items-center gap-2"
-                  >
-                    <span className="w-1 h-1 rounded-full bg-gold" />
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-lg font-heading font-semibold mb-6 text-gold">
-              Contact Us
+            <h4 className="text-lg font-heading font-bold mb-8 text-white">
+              Company
             </h4>
             <ul className="space-y-4">
-              <li>
-                <a 
-                  href="mailto:info@flygoldfinch.com" 
-                  className="flex items-start gap-3 text-slate-light hover:text-gold transition-colors"
-                >
-                  <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                  <span>info@flygoldfinch.com</span>
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="tel:+918178638182" 
-                  className="flex items-start gap-3 text-slate-light hover:text-gold transition-colors"
-                >
-                  <Phone className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                  <span>+91 8178638182</span>
-                </a>
-              </li>
-              <li>
-                <div className="flex items-start gap-3 text-slate-light">
-                  <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                  <span>Shamshabad, Telangana, India</span>
-                </div>
-              </li>
+              {['About', 'Careers', 'Mobile'].map((item) => (
+                <li key={item}>
+                  <Link
+                    href="#"
+                    className="text-slate-light hover:text-coral transition-colors duration-300"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
             </ul>
+          </div>
 
-            {/* Google Reviews Badge */}
-            <div className="mt-6 p-4 bg-white/5 rounded-lg">
-              <div className="flex items-center gap-2 mb-1">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className="w-4 h-4 text-gold fill-current"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                  ))}
-                </div>
-                <span className="text-sm text-gold font-medium">5.0</span>
-              </div>
-              <p className="text-sm text-slate-light">
-                376 Google Reviews
-              </p>
-            </div>
+          {/* Contact Links */}
+          <div>
+            <h4 className="text-lg font-heading font-bold mb-8 text-white">
+              Contact
+            </h4>
+            <ul className="space-y-4">
+              {['Help/FAQ', 'Press', 'Affilates'].map((item) => (
+                <li key={item}>
+                  <Link
+                    href="#"
+                    className="text-slate-light hover:text-coral transition-colors duration-300"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* More Links */}
+          <div>
+            <h4 className="text-lg font-heading font-bold mb-8 text-white">
+              More
+            </h4>
+            <ul className="space-y-4">
+              {['Airlinefees', 'Airline', 'Low fare tips'].map((item) => (
+                <li key={item}>
+                  <Link
+                    href="#"
+                    className="text-slate-light hover:text-coral transition-colors duration-300"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </div>
 
-      {/* Certifications Banner */}
-      <div className="border-t border-white/10 py-6">
-        <div className="container-custom">
-          <p className="text-center text-slate-light text-sm mb-4">
-            Certified Specialists in
+        {/* Bottom Bar */}
+        <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-8">
+          <p className="text-slate-light text-sm">
+            All rights reserved@flygoldfinch.com
           </p>
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-slate-light">
-            <span>🇦🇺 Australia</span>
-            <span>🇳🇿 New Zealand</span>
-            <span>🇿🇦 South Africa</span>
-            <span>🇨🇭 Switzerland</span>
-            <span>🇭🇰 Hong Kong</span>
-            <span>🇫🇯 Fiji</span>
-            <span>🇲🇾 Malaysia</span>
-            <span>🇸🇬 Singapore</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Copyright */}
-      <div className="border-t border-white/10 py-6">
-        <div className="container-custom">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-light">
-            <p>
-              © {new Date().getFullYear()} Fly Goldfinch. All rights reserved.
-            </p>
-            <div className="flex gap-6">
-              <Link href="#" className="hover:text-gold transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="#" className="hover:text-gold transition-colors">
-                Terms of Service
-              </Link>
-            </div>
+          <div className="flex gap-8 text-sm text-slate-light">
+            <Link href="#" className="hover:text-coral transition-colors">Privacy Policy</Link>
+            <Link href="#" className="hover:text-coral transition-colors">Terms & Conditions</Link>
           </div>
         </div>
       </div>

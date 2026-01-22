@@ -609,50 +609,70 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-12"
+              className="text-center mb-16"
             >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-gold-100 text-gold-600 text-sm font-medium mb-4">
-                Trending Trips
+              <span className="inline-block text-slate font-medium text-sm uppercase tracking-wider mb-4">
+                Top Selling
               </span>
-              <h2 className="text-3xl md:text-4xl font-heading font-semibold text-charcoal mb-4">
-                Popular <span className="text-gradient-gold">Itineraries</span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-navy">
+                Popular Itineraries
               </h2>
-              <p className="text-slate max-w-2xl mx-auto">
-                Our most loved travel packages, carefully crafted for unforgettable experiences.
-              </p>
             </motion.div>
 
             {/* Trip Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {featuredItineraries.map((itinerary, index) => (
                 <TripCard key={itinerary.id} itinerary={itinerary} index={index} />
               ))}
+            </div>
+
+            <div className="mt-16 text-center">
+              <Button variant="outline" size="lg" className="rounded-full px-10 border-navy text-navy hover:bg-navy hover:text-white transition-all duration-300">
+                View All Packages
+              </Button>
             </div>
           </div>
         </section>
 
         {/* ===== WHY CHOOSE US ===== */}
-        <section className="section-padding bg-off-white">
+        <section className="section-padding bg-hero-cream">
           <div className="container-custom">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-gold-100 text-gold-600 text-sm font-medium mb-4">
-                Why Fly Goldfinch
-              </span>
-              <h2 className="text-3xl md:text-4xl font-heading font-semibold text-charcoal mb-4">
-                Travel with <span className="text-gradient-gold">Confidence</span>
-              </h2>
-              <p className="text-slate max-w-2xl mx-auto">
-                What sets us apart in crafting your perfect journey.
-              </p>
-            </motion.div>
+            <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >
+                <span className="inline-block text-coral font-bold text-sm uppercase tracking-[0.3em] mb-4">
+                  Why Fly Goldfinch
+                </span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-navy mb-6">
+                  Travel with Confidence
+                </h2>
+                <p className="text-slate text-lg leading-relaxed max-w-xl">
+                  We believe travel should be more than just visiting a place. 
+                  It's about the stories you bring back and the memories that last a lifetime.
+                </p>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="relative aspect-video rounded-[32px] overflow-hidden shadow-2xl"
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80"
+                  alt="Travel with Confidence"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-navy/20" />
+              </motion.div>
+            </div>
 
             {/* Feature Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature, index) => (
                 <FeatureCard
                   key={feature.title}

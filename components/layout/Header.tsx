@@ -110,10 +110,10 @@ export function Header() {
         </div>
 
         {/* Scroll Progress Bar */}
-        <motion.div
+        {/* <motion.div
           className="absolute bottom-0 left-0 right-0 h-[2px] bg-gold origin-left"
           style={{ scaleX }}
-        />
+        /> */}
       </motion.header>
 
       {/* Mobile Menu Overlay */}

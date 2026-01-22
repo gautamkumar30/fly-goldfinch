@@ -6,6 +6,9 @@ import { MessageSquare, X, Send, Bot, User, Loader2, Sparkles } from 'lucide-rea
 import { chatWithGemini } from '@/app/actions/chat';
 import { cn } from '@/lib/utils';
 
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+
 interface Message {
   role: 'user' | 'model';
   text: string;
@@ -112,7 +115,25 @@ export function ChatBot() {
                       ? "bg-gold text-navy rounded-tr-none" 
                       : "bg-white border border-gray-100 text-charcoal shadow-sm rounded-tl-none"
                   )}>
-                    {m.text}
+                    {m.role === 'user' ? (
+                      m.text
+                    ) : (
+                      <ReactMarkdown 
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                          p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                          ul: ({ children }) => <ul className="list-disc ml-4 mb-2 space-y-1">{children}</ul>,
+                          ol: ({ children }) => <ol className="list-decimal ml-4 mb-2 space-y-1">{children}</ol>,
+                          li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+                          strong: ({ children }) => <strong className="font-bold text-navy">{children}</strong>,
+                          h1: ({ children }) => <h1 className="text-lg font-bold mb-2">{children}</h1>,
+                          h2: ({ children }) => <h2 className="text-base font-bold mb-2">{children}</h2>,
+                          h3: ({ children }) => <h3 className="text-sm font-bold mb-1">{children}</h3>,
+                        }}
+                      >
+                        {m.text}
+                      </ReactMarkdown>
+                    )}
                   </div>
                 </motion.div>
               ))}

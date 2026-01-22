@@ -1,4 +1,4 @@
-import { pgTable, serial, text, varchar, timestamp, jsonb, integer } from 'drizzle-orm/pg-core';
+import { pgTable, serial, text, varchar, timestamp, jsonb, integer, boolean } from 'drizzle-orm/pg-core';
 
 export const contacts = pgTable('contacts', {
   id: serial('id').primaryKey(),
@@ -30,4 +30,22 @@ export const partialFormData = pgTable('partial_form_data', {
   formId: varchar('form_id', { length: 50 }).notNull(),
   data: jsonb('data').notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
+});
+
+export const itineraries = pgTable('itineraries', {
+  id: serial('id').primaryKey(),
+  externalId: varchar('external_id', { length: 255 }).notNull(),
+  destination: varchar('destination', { length: 255 }).notNull(),
+  title: varchar('title', { length: 255 }).notNull(),
+  slug: varchar('slug', { length: 255 }).notNull().unique(),
+  nights: integer('nights').notNull(),
+  days: integer('days').notNull(),
+  price: integer('price').notNull(),
+  image: text('image').notNull(),
+  description: text('description').notNull(),
+  highlights: jsonb('highlights').notNull(), // Array of strings
+  inclusions: jsonb('inclusions').notNull(), // Array of strings
+  cities: jsonb('cities').notNull(), // Array of strings
+  featured: boolean('featured').default(false).notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
 });

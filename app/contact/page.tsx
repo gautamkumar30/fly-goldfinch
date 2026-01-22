@@ -30,7 +30,8 @@ import { savePartialFormData } from '@/app/actions/analytics';
 
 // Data
 import { featuredDestinations, destinations } from '@/lib/data/destinations';
-import { featuredItineraries } from '@/lib/data/itineraries';
+import { type Itinerary } from '@/lib/data/itineraries';
+import { fetchFeaturedItineraries } from '@/app/actions/itineraries';
 import { cn } from '@/lib/utils';
 
 interface ContactFormData {
@@ -70,6 +71,23 @@ const faqs = [
 ];
 
 export default function ContactPage() {
+  const [itineraries, setItineraries] = useState<Itinerary[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadItineraries() {
+      try {
+        const data = await fetchFeaturedItineraries();
+        setItineraries(data);
+      } catch (error) {
+        console.error('Error fetching itineraries:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadItineraries();
+  }, []);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -577,9 +595,15 @@ export default function ContactPage() {
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {featuredItineraries.slice(0, 3).map((itinerary, index) => (
-                <TripCard key={itinerary.id} itinerary={itinerary} index={index} />
-              ))}
+              {loading ? (
+                [...Array(3)].map((_, i) => (
+                  <div key={i} className="bg-gray-100 animate-pulse rounded-2xl aspect-[4/5]" />
+                ))
+              ) : (
+                itineraries.slice(0, 3).map((itinerary, index) => (
+                  <TripCard key={itinerary.id} itinerary={itinerary} index={index} />
+                ))
+              )}
             </div>
           </div>
         </section>

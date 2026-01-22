@@ -33,9 +33,11 @@ import { FeatureCard } from '@/components/cards/FeatureCard';
 import { CertificationMarquee } from '@/components/sections/CertificationMarquee';
 import { CTASection } from '@/components/sections/CTASection';
 
+import { useState, useEffect } from 'react';
 // Data
 import { featuredDestinations } from '@/lib/data/destinations';
-import { featuredItineraries } from '@/lib/data/itineraries';
+import { type Itinerary } from '@/lib/data/itineraries';
+import { fetchFeaturedItineraries } from '@/app/actions/itineraries';
 import { testimonials } from '@/lib/data/testimonials';
 import { formatPrice } from '@/lib/utils';
 
@@ -64,6 +66,23 @@ const features = [
 ];
 
 export default function HomePage() {
+  const [itineraries, setItineraries] = useState<Itinerary[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadItineraries() {
+      try {
+        const data = await fetchFeaturedItineraries();
+        setItineraries(data);
+      } catch (error) {
+        console.error('Error fetching itineraries:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadItineraries();
+  }, []);
+
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -621,9 +640,20 @@ export default function HomePage() {
 
             {/* Trip Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-              {featuredItineraries.map((itinerary, index) => (
-                <TripCard key={itinerary.id} itinerary={itinerary} index={index} />
-              ))}
+              {loading ? (
+                // Skeleton loading state
+                [...Array(3)].map((_, i) => (
+                  <div key={i} className="bg-gray-100 animate-pulse rounded-[32px] aspect-[4/5]" />
+                ))
+              ) : itineraries.length > 0 ? (
+                itineraries.map((itinerary, index) => (
+                  <TripCard key={itinerary.id} itinerary={itinerary} index={index} />
+                ))
+              ) : (
+                <div className="col-span-full text-center py-10 text-slate">
+                  No itineraries available at the moment.
+                </div>
+              )}
             </div>
 
             <div className="mt-16 text-center">

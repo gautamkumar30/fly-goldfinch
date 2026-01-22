@@ -1,7 +1,7 @@
 'use server';
 
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { itineraries } from '@/lib/data/itineraries';
+import { getItineraries } from '@/lib/data/itineraries';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
@@ -11,6 +11,7 @@ export async function chatWithGemini(message: string, history: { role: 'user' | 
   }
 
   try {
+    const itineraries = await getItineraries();
     const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
     const context = `

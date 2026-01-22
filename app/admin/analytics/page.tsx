@@ -18,7 +18,7 @@ export default async function AdminAnalyticsPage() {
               <span className="text-sm font-semibold uppercase tracking-wider">Admin Dashboard</span>
             </div>
             <h1 className="text-3xl md:text-4xl font-heading font-bold text-charcoal">
-              Website <span className="text-linear-to-r from-gold to-gold/60 bg-clip-text text-transparent">Analytics</span>
+              Website Analytics
             </h1>
             <p className="text-slate mt-2">
               Real-time insights into user behavior and engagement.

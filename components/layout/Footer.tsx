@@ -53,7 +53,7 @@ export function Footer() {
                 <Plane className="w-7 h-7 text-white" />
               </div>
               <span className="text-2xl font-heading font-bold tracking-tight">
-                Goldfinch
+                Fly Goldfinch
               </span>
             </Link>
             <p className="text-slate-light leading-relaxed max-w-xs">
@@ -78,7 +78,7 @@ export function Footer() {
           {/* Company Links */}
           <div>
             <h4 className="text-lg font-heading font-bold mb-8 text-white">
-              Company
+              <span className='text-white/80'>Company</span>
             </h4>
             <ul className="space-y-4">
               {['About', 'Careers', 'Mobile'].map((item) => (
@@ -97,7 +97,7 @@ export function Footer() {
           {/* Contact Links */}
           <div>
             <h4 className="text-lg font-heading font-bold mb-8 text-white">
-              Contact
+              <span className='text-white/80'>Contact</span>
             </h4>
             <ul className="space-y-4">
               {['Help/FAQ', 'Press', 'Affilates'].map((item) => (
@@ -116,7 +116,7 @@ export function Footer() {
           {/* More Links */}
           <div>
             <h4 className="text-lg font-heading font-bold mb-8 text-white">
-              More
+              <span className='text-white/80'>More</span>
             </h4>
             <ul className="space-y-4">
               {['Airlinefees', 'Airline', 'Low fare tips'].map((item) => (

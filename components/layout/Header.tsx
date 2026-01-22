@@ -68,7 +68,7 @@ export function Header() {
                   "text-xl font-heading font-bold tracking-tight transition-colors duration-300",
                   isScrolled ? "text-navy" : "text-navy"
                 )}>
-                  Fly <span className="text-linear-to-r from-gold to-gold-dark bg-clip-text text-transparent animate-shimmer">Goldfinch</span>
+                  Fly <span className="text-gold-dark">Goldfinch</span>
                 </span>
                 <span className="text-[10px] uppercase tracking-[0.3em] text-slate font-semibold">Premium Travel</span>
               </div>

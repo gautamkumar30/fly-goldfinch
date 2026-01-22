@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -25,6 +25,8 @@ import { Footer } from '@/components/layout/Footer';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { Button } from '@/components/ui/Button';
 import { TripCard } from '@/components/cards/TripCard';
+import { submitContactForm } from '@/app/actions/contact';
+import { savePartialFormData } from '@/app/actions/analytics';
 
 // Data
 import { featuredDestinations, destinations } from '@/lib/data/destinations';
@@ -77,16 +79,45 @@ export default function ContactPage() {
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm<ContactFormData>();
+
+  const formData = watch();
+
+  useEffect(() => {
+    const sessionId = localStorage.getItem('fly_goldfinch_session_id');
+    if (!sessionId) return;
+
+    const timer = setTimeout(() => {
+      // Only save if some data is entered
+      if (Object.values(formData).some(val => val && val.length > 0)) {
+        savePartialFormData({
+          sessionId,
+          formId: 'contact_form',
+          formData,
+        });
+      }
+    }, 2000); // Debounce for 2 seconds
+
+    return () => clearTimeout(timer);
+  }, [formData]);
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log('Form submitted:', data);
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    reset();
+    try {
+      const result = await submitContactForm(data);
+      if (result.success) {
+        setIsSubmitted(true);
+        reset();
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -98,7 +129,7 @@ export default function ContactPage() {
         {/* ===== HERO SECTION ===== */}
         <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
           {/* Gradient Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-secondary to-navy z-0" />
+          <div className="absolute inset-0 bg-linear-to-br from-navy via-navy-secondary to-navy z-0" />
           
           {/* Decorative Elements */}
           <motion.div
@@ -422,7 +453,7 @@ export default function ContactPage() {
                         href="mailto:info@flygoldfinch.com"
                         className="flex items-start gap-4 group"
                       >
-                        <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center flex-shrink-0 group-hover:bg-gold transition-colors">
+                        <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center shrink-0 group-hover:bg-gold transition-colors">
                           <Mail className="w-5 h-5 text-gold group-hover:text-navy transition-colors" />
                         </div>
                         <div>
@@ -438,7 +469,7 @@ export default function ContactPage() {
                         href="tel:+918178638182"
                         className="flex items-start gap-4 group"
                       >
-                        <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center flex-shrink-0 group-hover:bg-gold transition-colors">
+                        <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center shrink-0 group-hover:bg-gold transition-colors">
                           <Phone className="w-5 h-5 text-gold group-hover:text-navy transition-colors" />
                         </div>
                         <div>
@@ -451,7 +482,7 @@ export default function ContactPage() {
                     </li>
                     <li>
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center shrink-0">
                           <MapPin className="w-5 h-5 text-gold" />
                         </div>
                         <div>
@@ -471,7 +502,7 @@ export default function ContactPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 }}
-                  className="bg-gradient-to-br from-navy to-navy-secondary rounded-2xl shadow-lg p-6 text-white"
+                  className="bg-linear-to-br from-navy to-navy-secondary rounded-2xl shadow-lg p-6 text-white"
                 >
                   <div className="flex items-center gap-2 mb-4">
                     <div className="flex">
@@ -588,7 +619,7 @@ export default function ContactPage() {
                     <motion.span
                       animate={{ rotate: openFaq === index ? 180 : 0 }}
                       transition={{ duration: 0.2 }}
-                      className="flex-shrink-0"
+                      className="shrink-0"
                     >
                       <ChevronDown className="w-5 h-5 text-gold" />
                     </motion.span>

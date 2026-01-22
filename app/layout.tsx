@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ChatBot } from '@/components/chat/ChatBot';
+import { AnalyticsTracker } from '@/components/analytics/AnalyticsTracker';
 
 export const metadata: Metadata = {
   title: "Fly Goldfinch | Premium Travel Experiences",
@@ -32,6 +34,8 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         {children}
+        <AnalyticsTracker />
+        <ChatBot />
       </body>
     </html>
   );

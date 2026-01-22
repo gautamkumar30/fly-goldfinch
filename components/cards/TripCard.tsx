@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { Clock, MapPin, Check, ArrowRight, Map as MapIcon } from 'lucide-react';
 import { Itinerary } from '@/lib/data/itineraries';
 import { formatPrice } from '@/lib/utils';
@@ -13,8 +14,8 @@ interface TripCardProps {
   index?: number;
   variant?: 'default' | 'horizontal';
 }
-
 export function TripCard({ itinerary, index = 0, variant = 'default' }: TripCardProps) {
+  const router = useRouter();
   const { title, destination, duration, price, image, highlights, cities, slug } = itinerary;
 
   const handleClick = async () => {
@@ -27,6 +28,7 @@ export function TripCard({ itinerary, index = 0, variant = 'default' }: TripCard
         url: window.location.href,
       });
     }
+    router.push(`/itineraries/${slug}`);
   };
 
   if (variant === 'horizontal') {

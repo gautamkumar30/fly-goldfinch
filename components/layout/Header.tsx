@@ -71,7 +71,7 @@ export function Header() {
               <span 
                 className={cn(
                   'text-xl md:text-2xl font-heading font-semibold transition-colors duration-300',
-                  isScrolled ? 'text-charcoal' : 'text-white'
+                  isScrolled ? 'text-white/70' : 'text-white'
                 )}
               >
                 Fly <span className="text-gradient-gold">Goldfinch</span>
@@ -87,7 +87,7 @@ export function Header() {
                   className={cn(
                     'relative font-medium transition-colors duration-300',
                     'hover:text-gold',
-                    isScrolled ? 'text-charcoal' : 'text-white'
+                    isScrolled ? 'text-white/70' : 'text-white'
                   )}
                 >
                   <span className="relative">

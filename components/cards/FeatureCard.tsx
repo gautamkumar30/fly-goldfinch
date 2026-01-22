@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 interface FeatureCardProps {
   icon: LucideIcon;
@@ -22,12 +21,12 @@ export function FeatureCard({ icon: Icon, title, description, index = 0 }: Featu
       className="group relative bg-white rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
     >
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gold-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute inset-0 bg-linear-to-br from-gold-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       {/* Icon */}
       <motion.div
         whileHover={{ scale: 1.1, rotate: 5 }}
-        className="relative w-16 h-16 rounded-xl bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center mb-5 shadow-gold"
+        className="relative w-16 h-16 rounded-xl bg-linear-to-br from-gold to-gold-dark flex items-center justify-center mb-5 shadow-gold"
       >
         <Icon className="w-8 h-8 text-navy" />
       </motion.div>

@@ -41,7 +41,7 @@ export function TestimonialCard({ testimonial, index = 0 }: TestimonialCardProps
 
       {/* Review Text */}
       <p className="text-slate-dark leading-relaxed mb-6 text-base md:text-lg">
-        "{text}"
+        &ldquo;{text}&rdquo;
       </p>
 
       {/* Author Info */}

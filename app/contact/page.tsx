@@ -16,8 +16,7 @@ import {
   Users,
   Calendar,
   Wallet,
-  MessageSquare,
-  Loader2
+  MessageSquare
 } from 'lucide-react';
 
 // Components
@@ -139,7 +138,7 @@ export default function ContactPage() {
               </motion.div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-semibold text-white mb-6">
-                Let's Plan Your <span className="text-gradient-gold">Dream Journey</span>
+                Let&apos;s Plan Your <span className="text-gradient-gold">Dream Journey</span>
               </h1>
               <p className="text-lg md:text-xl text-white/80">
                 Tell us about your travel dreams and our specialists will craft the perfect itinerary for you.
@@ -164,7 +163,7 @@ export default function ContactPage() {
                     Get a Free Quote
                   </h2>
                   <p className="text-slate mb-8">
-                    Fill in your details and we'll get back to you within 24 hours.
+                    Fill in your details and we&apos;ll get back to you within 24 hours.
                   </p>
 
                   <AnimatePresence mode="wait">

@@ -2,14 +2,13 @@
 
 import { useState, useMemo } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, 
   Filter, 
   X, 
   MapPin, 
-  Grid3X3, 
-  Map,
   ChevronDown 
 } from 'lucide-react';
 
@@ -109,7 +108,7 @@ export default function DestinationsPage() {
                 transition={{ delay: 0.2 }}
                 className="flex items-center justify-center gap-2 text-white/60 text-sm mb-6"
               >
-                <a href="/" className="hover:text-gold transition-colors">Home</a>
+                <Link href="/" className="hover:text-gold transition-colors">Home</Link>
                 <span>/</span>
                 <span className="text-gold">Destinations</span>
               </motion.div>
@@ -254,7 +253,7 @@ export default function DestinationsPage() {
                   No destinations found
                 </h3>
                 <p className="text-slate mb-6">
-                  Try adjusting your search or filters to find what you're looking for.
+                  Try adjusting your search or filters to find what you&apos;re looking for.
                 </p>
                 <Button onClick={clearFilters} variant="outline">
                   Clear Filters

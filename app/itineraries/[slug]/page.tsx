@@ -106,7 +106,7 @@ export default function ItineraryDetailPage() {
               </div>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 max-w-4xl">
-                {itinerary.title}
+                <span className="text-white">{itinerary.title}</span>
               </h1>
               
               <div className="flex flex-wrap gap-6 text-white/90">

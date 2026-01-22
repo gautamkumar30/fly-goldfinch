@@ -209,7 +209,7 @@ export default function HomePage() {
                 Featured Destinations
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-semibold text-charcoal mb-4">
-                Discover <span className="text-gradient-gold">Breathtaking</span> Places
+                Discover <span className="text-gold">Breathtaking</span> Places
               </h2>
               <p className="text-slate max-w-2xl mx-auto">
                 From the temples of Japan to the safaris of South Africa, 

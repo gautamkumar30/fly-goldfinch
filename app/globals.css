@@ -82,47 +82,81 @@
 
 /* ===== TAILWIND THEME EXTENSION ===== */
 @theme inline {
-  /* Colors */
-  --color-gold-50: var(--gold-50);
-  --color-gold-100: var(--gold-100);
-  --color-gold-200: var(--gold-200);
-  --color-gold-300: var(--gold-300);
-  --color-gold-400: var(--gold-400);
-  --color-gold-500: var(--gold-500);
-  --color-gold-600: var(--gold-600);
-  --color-gold: var(--gold-primary);
-  --color-gold-light: var(--gold-light);
-  --color-gold-dark: var(--gold-dark);
+  /* Colors - Gold/Amber (Goldfinch branding) */
+  --color-gold-50: #fffbeb;
+  --color-gold-100: #fef3c7;
+  --color-gold-200: #fde68a;
+  --color-gold-300: #fcd34d;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+  --color-gold-600: #d97706;
+  --color-gold: #D4AF37;
+  --color-gold-light: #FFD700;
+  --color-gold-dark: #B8960C;
 
-  --color-navy-50: var(--navy-50);
-  --color-navy-100: var(--navy-100);
-  --color-navy-200: var(--navy-200);
-  --color-navy-300: var(--navy-300);
-  --color-navy-400: var(--navy-400);
-  --color-navy-500: var(--navy-500);
-  --color-navy-600: var(--navy-600);
-  --color-navy-700: var(--navy-700);
-  --color-navy-800: var(--navy-800);
-  --color-navy-900: var(--navy-900);
-  --color-navy: var(--navy-primary);
-  --color-navy-secondary: var(--navy-secondary);
+  /* Colors - Navy/Blue (trust & travel) */
+  --color-navy-50: #eff6ff;
+  --color-navy-100: #dbeafe;
+  --color-navy-200: #bfdbfe;
+  --color-navy-300: #93c5fd;
+  --color-navy-400: #60a5fa;
+  --color-navy-500: #3b82f6;
+  --color-navy-600: #2563eb;
+  --color-navy-700: #1d4ed8;
+  --color-navy-800: #1e40af;
+  --color-navy-900: #1e3a8a;
+  --color-navy: #1a365d;
+  --color-navy-secondary: #2c5282;
 
-  --color-coral: var(--coral-primary);
-  --color-coral-light: var(--coral-light);
-  --color-coral-dark: var(--coral-dark);
+  /* Colors - Coral/Orange (CTAs) */
+  --color-coral: #FF6B6B;
+  --color-coral-light: #FF8C42;
+  --color-coral-dark: #E55555;
 
-  --color-charcoal: var(--charcoal);
-  --color-slate-dark: var(--slate-dark);
-  --color-slate: var(--slate);
-  --color-slate-light: var(--slate-light);
-  --color-off-white: var(--off-white);
+  /* Colors - Neutrals */
+  --color-charcoal: #1f2937;
+  --color-slate-dark: #334155;
+  --color-slate: #64748b;
+  --color-slate-light: #94a3b8;
+  --color-off-white: #f8fafc;
 
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Background */
+  --color-background: #ffffff;
+  --color-foreground: #1f2937;
 
   /* Fonts */
-  --font-heading: var(--font-heading);
-  --font-body: var(--font-body);
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+/* ===== EXPLICIT TEXT COLOR UTILITIES ===== */
+/* These ensure text colors work reliably across the app */
+.text-charcoal {
+  color: #1f2937 !important;
+}
+
+.text-slate-dark {
+  color: #334155;
+}
+
+.text-slate {
+  color: #64748b;
+}
+
+.text-slate-light {
+  color: #94a3b8;
+}
+
+.text-navy {
+  color: #1a365d;
+}
+
+.text-gold {
+  color: #D4AF37;
+}
+
+.text-coral {
+  color: #FF6B6B;
 }
 
 /* ===== BASE STYLES ===== */

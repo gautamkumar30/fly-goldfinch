@@ -114,10 +114,10 @@ export default function DestinationsPage() {
               </motion.div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-semibold text-white mb-6">
-                Breathtaking <span className="text-gradient-gold">Destinations</span>
+                <span className='text-white'> Breathtaking </span><span className="text-gradient-gold">Destinations</span>
               </h1>
-              <p className="text-lg md:text-xl text-white/80 mb-8">
-                Discover 25+ countries across 5 continents. Your next adventure awaits.
+              <p className="text-lg md:text-xl text-white mb-8">
+                <span className='text-white/80'>Discover 25+ countries across 5 continents. Your next adventure awaits.</span> 
               </p>
 
               {/* Quick Stats */}
@@ -137,7 +137,7 @@ export default function DestinationsPage() {
                     <p className="text-2xl md:text-3xl font-heading font-bold text-gold">
                       {stat.value}
                     </p>
-                    <p className="text-sm text-white/70">{stat.label}</p>
+                    <p className="text-sm text-white/70"><span className='text-white/80'>{stat.label}</span></p>
                   </motion.div>
                 ))}
               </div>

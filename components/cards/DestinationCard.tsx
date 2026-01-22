@@ -73,7 +73,7 @@ export function DestinationCard({
             'font-heading font-semibold text-white mb-2',
             variant === 'featured' ? 'text-3xl md:text-4xl' : 'text-2xl'
           )}>
-            {name}
+            <span className='text-white'>{name}</span>
           </h3>
 
           {/* Description - shows on hover */}
@@ -88,7 +88,7 @@ export function DestinationCard({
           {/* Price Range */}
           <div className="flex items-center justify-between">
             <p className="text-white/90 text-sm">
-              From{' '}
+              <span className='text-white/70'>From{' '}</span>
               <span className="text-gold font-semibold">
                 {formatPrice(priceRange.min)}
               </span>

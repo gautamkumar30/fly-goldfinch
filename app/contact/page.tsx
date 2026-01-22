@@ -187,10 +187,10 @@ export default function ContactPage() {
               </motion.div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-semibold text-white mb-6">
-                Let&apos;s Plan Your <span className="text-gradient-gold">Dream Journey</span>
+                <span className='text-white'>Let&apos;s Plan Your</span> <span className="text-gradient-gold">Dream Journey</span>
               </h1>
               <p className="text-lg md:text-xl text-white/80">
-                Tell us about your travel dreams and our specialists will craft the perfect itinerary for you.
+                <span className='text-white/80'>Tell us about your travel dreams and our specialists will craft the perfect itinerary for you.</span>
               </p>
             </motion.div>
           </div>
@@ -530,11 +530,11 @@ export default function ContactPage() {
                     </div>
                     <span className="font-semibold">5.0</span>
                   </div>
-                  <p className="text-2xl font-heading font-bold mb-1">376</p>
-                  <p className="text-white/70 text-sm mb-4">Google Reviews</p>
+                  <p className="text-2xl font-heading font-bold mb-1"><span className='text-white'>376</span></p>
+                  <p className="text-white/70 text-sm mb-4"><span className='text-white/80'>Google Reviews</span></p>
                   
                   <div className="border-t border-white/20 pt-4">
-                    <p className="text-white/70 text-sm mb-1">Join our community of</p>
+                    <p className="text-white/70 text-sm mb-1"><span className='text-white/80'>Join our community of</span></p>
                     <p className="text-xl font-heading font-bold text-gold">1000+ Happy Travelers</p>
                   </div>
                 </motion.div>
